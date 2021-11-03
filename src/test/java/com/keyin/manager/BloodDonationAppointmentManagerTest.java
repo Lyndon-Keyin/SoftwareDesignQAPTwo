@@ -70,6 +70,12 @@ public class BloodDonationAppointmentManagerTest {
         appointmentSlot.setBloodType("A");
         appointmentSlots.add(appointmentSlot);
 
+        AppointmentSlot appointmentSlotB = new AppointmentSlot();
+        appointmentSlotB.setId(1);
+        appointmentSlotB.setLocation("3 Pippy Place st. John's NL");
+        appointmentSlotB.setBloodType("B");
+        appointmentSlots.add(appointmentSlotB);
+
         when(dataBaseMock.getAppointmentSlots()).thenReturn(appointmentSlots);
 
         BloodDonationAppointmentManager bloodDonationAppointmentManager =
@@ -169,7 +175,7 @@ public class BloodDonationAppointmentManagerTest {
         BloodDonor lastAppointment = new BloodDonor();
         BloodDonationAppointment bloodDonationAppointment = new BloodDonationAppointment();
         bloodDonationAppointment.setAppointmentId(1);
-        bloodDonationAppointment.setAppointmentDate(LocalDate.of(2021,11,7));
+        bloodDonationAppointment.setAppointmentDate(LocalDate.of(2021,11,12));
         bloodDonationAppointment.setAppointmentTime(LocalTime.of(9,0));
         bloodDonationAppointment.setAppointmentDuration(Duration.ofHours(1));//maybe more than 59mins long and int
         bloodDonationAppointment.setLocation("1 Nice Place Portugal Cove NL");
@@ -198,7 +204,7 @@ public class BloodDonationAppointmentManagerTest {
         BloodDonor lastAppointmentOne = new BloodDonor();
         BloodDonationAppointment bloodDonationAppointmentTwo = new BloodDonationAppointment();
         bloodDonationAppointmentTwo.setAppointmentId(2);
-        bloodDonationAppointmentTwo.setAppointmentDate(LocalDate.of(2021,12,15));
+        bloodDonationAppointmentTwo.setAppointmentDate(LocalDate.of(2021,11,15));
         bloodDonationAppointmentTwo.setAppointmentTime(LocalTime.of(9,0));
         bloodDonationAppointmentTwo.setAppointmentDuration(Duration.ofHours(1));//maybe more than 59mins long and int
         bloodDonationAppointmentTwo.setLocation("3 Nice Place Portugal Cove NL");
