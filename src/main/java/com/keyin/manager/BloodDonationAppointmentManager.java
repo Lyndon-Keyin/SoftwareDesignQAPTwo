@@ -24,6 +24,16 @@ public class BloodDonationAppointmentManager {
         BloodDonationAppointment bloodDonationAppointment = database.getBloodDonationAppointment();
         BloodDonor bloodDonor = database.getBloodDonor();
 
+        //Blood Type Validation Test
+        List<AppointmentSlot> appointmentSlotList = database.getAppointmentSlots();
+
+        for (AppointmentSlot appointmentSlot : appointmentSlotList) {
+            if (appointmentSlot.getBloodType().equalsIgnoreCase(bloodDonor.getBloodType())) {
+            }
+            else {
+                throw new InvalidDonationSchedulingException("invalid blood type");
+            }
+        }
 
 //Age Verification Testing
         if (bloodDonor.getId() == bloodDonorId) {
@@ -40,16 +50,7 @@ public class BloodDonationAppointmentManager {
         }
 
 
-//Blood Type Validation Test
-        List<AppointmentSlot> appointmentSlotList = database.getAppointmentSlots();
 
-        for (AppointmentSlot appointmentSlot : appointmentSlotList) {
-            if (appointmentSlot.getBloodType().equalsIgnoreCase(bloodDonor.getBloodType())) {
-            }
-            else {
-                throw new InvalidDonationSchedulingException("invalid blood type");
-            }
-        }
 //Time Restraining Rules Before and After
         if (bloodDonationAppointment.getDonorId() == bloodDonorId) {
             LocalDate appointmentDate = bloodDonationAppointment.getAppointmentDate();
@@ -79,8 +80,9 @@ public class BloodDonationAppointmentManager {
 
 //check for double booking code logic
             if(bloodDonor.getNextAppointment() != null){
+                System.out.println("Cannot Double booked");
+            }else{
                 throw new InvalidDonationSchedulingException("you already have an appointment.");
-//                System.exit(1);
             }
         return bloodDonationAppointment;
     }
